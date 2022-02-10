@@ -1,0 +1,42 @@
+<div style="width:100%">
+  <mat-card class="example-card" *ngFor="let resource of this.allResources">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"><mat-icon>chevron_right</mat-icon></div>
+        <mat-card-title>{{resource.name}}</mat-card-title>
+        <mat-card-subtitle>{{resource.ref}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="../../../assets/uploads/{{resource.picture}}">
+      <mat-card-content>
+        <div *ngIf="resource.state.id == 3">
+          En maintenance
+        </div>
+
+        <div *ngIf="resource.state.id != 3">
+          En marche
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="displayCalendar(resource.id)">Accéder au planning</button>
+      </mat-card-actions>
+  </mat-card>
+  <div style="clear:both"></div>
+</div>
+<div style="width: 100%;">
+  <button mat-button color="primary" (click)="previous()">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">chevron_left</mat-icon>
+  </button>
+  <button mat-button color="primary" (click)="next()">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">chevron_right</mat-icon>
+  </button>
+  Page {{this.page+1}} sur {{this.nbPage}}
+  <mat-form-field appearance="fill" style="float:right;">
+    <mat-label>Number</mat-label>
+    <mat-select [(value)]="size" (valueChange)="changeValue($event)">
+        <mat-option value="1" selected>1</mat-option>
+        <mat-option value="5">5</mat-option>
+        <mat-option value="10">10</mat-option>
+        <mat-option value="15">15</mat-option>
+        <mat-option value="20">20</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

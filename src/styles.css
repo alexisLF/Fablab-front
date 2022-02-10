@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  margin: 0;
+  height: 96%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.fc
+  .fc-header-toolbar
+  .fc-toolbar-chunk
+  .fc-button-group
+  .fc-dayGridMonth-button {
+  background-color: #3f51b5;
+  border-color: #3f51b5;
+}
+
+.fc
+  .fc-header-toolbar
+  .fc-toolbar-chunk
+  .fc-button-group
+  .fc-timeGridWeek-button {
+  background-color: #3f51b5;
+  border-color: #3f51b5;
+}
+
+.fc .fc-header-toolbar .fc-toolbar-chunk .fc-today-button {
+  background-color: #3f51b5;
+  border-color: #3f51b5;
+}
+
+.fc .fc-header-toolbar .fc-toolbar-chunk .fc-button-group .fc-prev-button {
+  background-color: #3f51b5;
+  border-color: #3f51b5;
+}
+
+.fc .fc-header-toolbar .fc-toolbar-chunk .fc-button-group .fc-next-button {
+  background-color: #3f51b5;
+  border-color: #3f51b5;
+}
+
+
+.subtitlewrapper {
+  padding: 0.5em 2em;
+
+  height: auto;
+
+  width: auto;
+
+  position: sticky;
+
+  margin-top: 1.1em;
+
+  z-index: 1;
+
+}
+
+.subtitle {
+  font-size: 2em;
+
+  font-weight: bold;
+
+  margin-top: 1%;
+
+  text-align: center;
+}
+
+
+.formulairewrapper {
+  width: 100%;
+
+  justify-content: center;
+
+  margin: 0 auto;
+
+  padding: 1em;
+}

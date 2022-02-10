@@ -1,0 +1,95 @@
+.container {
+  background-image: url("../../assets/background.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-size: cover;
+}
+
+.form {
+  background-color: rgba(255, 255, 255, 0.537);
+  border-radius: 7px;
+  width: 30%;
+  min-height: 60%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.279);
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  padding: 15px 0px;
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(110, 5, 117);
+  color: rgb(109, 5, 117);
+}
+
+.inputs {
+  display: flex;
+  height: 60%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 15px 20px;
+  padding-top: 2rem;
+}
+
+.input {
+  width: 90%;
+}
+
+.btn-valid {
+  width: 90%;
+  margin: auto;
+  background-color: rgb(136, 9, 145);
+  color: white;
+}
+
+.validation {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.checkbox {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 3rem;
+}
+
+.subscribe {
+  font-size: 12px;
+  
+}
+
+.link {
+  cursor: pointer;
+  color: blue;
+}
+
+.link:hover {
+  color: rgb(0, 0, 138);
+}
+
+.welcome {
+  font-size: 18px ;
+}
+
+.start {
+  display: flex;
+  width: 90%;
+  justify-content: start;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.text-danger {
+  color: red;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+
+}

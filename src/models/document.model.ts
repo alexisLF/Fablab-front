@@ -1,0 +1,9 @@
+import { Timestamp } from "rxjs/internal/operators/timestamp";
+
+export class Document {
+  public id: number;
+  public name: string;
+  public description: string;
+  public path: string;
+  constructor() {}
+}

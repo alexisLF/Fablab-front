@@ -1,0 +1,186 @@
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.list-topic {
+    width: 80%;
+    margin: 4rem 2rem;
+}
+
+.one-topic {
+    background-color: white;
+    padding: 1rem 0;
+    padding-right: 2rem;
+    display: flex;
+    margin-bottom: 2rem;
+    border-radius: 7px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.211);
+}
+
+.number {
+    text-align: center;
+}
+
+.title {
+    display: flex;
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 0.5rem;
+    height: 40px;
+    align-items: center;
+    color: black;
+}
+
+.text-blue {
+    color: blue;
+}
+
+.text-red {
+    color: red;
+}
+
+.text-grey {
+    color : rgb(106, 106, 106);
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 1.5rem;
+}
+
+.text {
+    padding-bottom: 1rem;
+    
+}
+
+.comment {
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+}
+
+.infos {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: solid;
+    border-top-width: 0.5px;
+    align-items: center;
+}
+
+.right-option {
+    width: 30%;
+    margin: 4rem 2rem;
+}
+
+
+.add-topic {
+    border-radius: 7px;
+    width: 100%;
+    padding: 5px;
+}
+
+
+.button-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-users {
+    margin: 30px 0;
+    width: 87%;
+    background-color: white;
+    border-radius: 7px;
+    padding: 20px;
+}
+
+.list-users {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.picture {
+    
+    background-size: cover;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.title-user {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 1rem;
+    color: black;
+}
+
+.score {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: blue;
+}
+
+
+.the-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+ 
+}
+
+.username {
+    color: blue;
+}
+
+.me {
+    border-top: solid;
+    border-top-width: 0.1px;
+    padding-top: 1rem;
+}
+
+.card-tags {
+    background-color: white;
+    width: 87%;
+    border-radius: 7px;
+    padding: 20px;
+}
+
+.list-tags {
+    display: flex;
+    
+    
+    
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tag {
+    display: flex;
+    margin: 5px 5px;
+    padding: 0px 20px;
+    height: 30px;
+    border-radius: 7px;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-tag {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 1rem;
+    color: black;
+}

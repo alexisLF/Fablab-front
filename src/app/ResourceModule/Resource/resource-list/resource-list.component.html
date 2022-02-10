@@ -1,0 +1,61 @@
+<div class="subtitlewrapper">
+  <p class="subtitle" translate>Module de gestion des ressources</p>
+</div>
+
+<div fxLayout="row wrap" class="matcardtilesWrapper">
+  <div>
+    <button mat-mini-fab fxLayoutAlign="center center" (click)="add()"
+    *ngIf="this.role == 'ROLE_ADMIN'">
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >add</mat-icon
+      >
+    </button>
+  </div>
+
+  <mat-card
+    *ngFor="let resource of resources"
+    class="matcardtiles mat-elevation-z3"
+  >
+    <mat-card-content
+      class="matcardcontent"
+      routerLink="/resources-details/{{ resource.id }}"
+    >
+      <span translate
+        ><img *ngIf="this.resource.picture != null" src="../../../assets/uploads/{{ resource.picture }}" />
+      </span>
+    </mat-card-content>
+
+    <mat-card-footer class="matcardtilesfooter">
+      <span translate routerLink="/resources-details/{{ resource.id }}">{{
+        resource.name
+      }}</span>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="sendOutOfStockWarning(resource.id)"
+        >
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >warning</mat-icon
+          >
+        </button>
+        <button mat-raised-button color="warn" (click)="update(resource.id)" 
+        *ngIf="this.role == 'ROLE_ADMIN'">
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >edit</mat-icon
+          >
+        </button>
+        <button
+          mat-raised-button
+          *ngIf="this.role == 'ROLE_ADMIN'"
+          color="warn"
+          (click)="deleteConfirmation(resource.id)"
+        >
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >delete</mat-icon
+          >
+        </button>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>

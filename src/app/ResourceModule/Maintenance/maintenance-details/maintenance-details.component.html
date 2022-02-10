@@ -1,0 +1,185 @@
+
+<div fxFlex fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center" class="subtitlewrapper">
+    <p class="subtitle" translate>Gestion des maintenances</p>
+  </div>
+  
+  <div fxLayout="row wrap" fxLayoutAlign="center">
+    <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
+      <div fxLayout="column" style="margin-top: 100px">
+        <form [formGroup]="form">
+          <!--<div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-label>Intitulé : </mat-label>
+              <input formControlName="name" matInput>
+              <mat-error *ngIf="form.controls['name'].invalid">Please enter a valid username</mat-error>
+            </mat-form-field>
+          </div>-->
+
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <input
+                matInput
+                [ngxMatDatetimePicker]="pickerDateStart"
+                placeholder="Date et heure de début"
+                formControlName="dateStart"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerDateStart"
+              ></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker
+                #pickerDateStart
+              ></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <input
+                matInput
+                [ngxMatDatetimePicker]="pickerDateEnd"
+                placeholder="Date et heure de fin"
+                formControlName="dateEnd"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerDateEnd"
+              ></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #pickerDateEnd></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-label>Remarque : </mat-label>
+              <input formControlName="note" matInput />
+              <mat-error *ngIf="form.controls['note'].invalid"
+                >Veuillez entrer une remarque</mat-error
+              >
+            </mat-form-field>
+          </div>
+
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-select
+                #selectStatus
+                placeholder="Statut :"
+                formControlName="maintenanceStatus"
+              >
+                <mat-select-filter
+                  *ngIf="selectStatus.focused"
+                  [placeholder]="'Filtre'"
+                  [displayMember]="'name'"
+                  [array]="maintenancesStatus"
+                  (filteredReturn)="filteredListMaintenanceStatus = $event"
+                ></mat-select-filter>
+                <mat-option
+                  *ngFor="let item of filteredListMaintenanceStatus"
+                  [value]="item"
+                >
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-select
+                #selectOperationType
+                placeholder="Type d'opération :"
+                formControlName="operationType"
+              >
+                <mat-select-filter
+                  *ngIf="selectOperationType.focused"
+                  [placeholder]="'Filtre'"
+                  [displayMember]="'name'"
+                  [array]="operationTypes"
+                  (filteredReturn)="filteredListOperationType = $event"
+                ></mat-select-filter>
+                <mat-option
+                  *ngFor="let item of filteredListOperationType"
+                  [value]="item"
+                >
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!--<mat-form-field>
+            <mat-select placeholder="Opérateur :">
+              <mat-select-filter [placeholder]="'Filtre'" [displayMember]="'name'" [array]="users" (filteredReturn)="filteredListUser =$event"></mat-select-filter>
+              <mat-option *ngFor="let item of filteredListUser" [value]="item">
+                {{item.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>-->
+
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-select
+                #selectOperationType
+                placeholder="Est un succès ?"
+                formControlName="isSuccess"
+              >
+                <mat-select-filter
+                  *ngIf="selectOperationType.focused"
+                  [placeholder]="'Filtre'"
+                  [displayMember]="'name'"
+                  [array]="operationTypes"
+                ></mat-select-filter>
+                <mat-option *ngFor="let case of successCases" [value]="case">
+                  {{ case }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-select
+                #selectResource
+                placeholder="Ressource :"
+                formControlName="resource"
+              >
+                <mat-select-filter
+                  *ngIf="selectResource.focused"
+                  [placeholder]="'Filtre'"
+                  [displayMember]="'name'"
+                  [array]="resources"
+                  (filteredReturn)="filteredListResource = $event"
+                ></mat-select-filter>
+                <mat-option
+                  *ngFor="let item of filteredListResource"
+                  [value]="item"
+                >
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxLayoutAlign="center">
+            <div *ngIf="isNew == true; else elseBlock">
+              <button
+                [disabled]="!form.valid || formSubmitted"
+                (click)="save()"
+                mat-raised-button
+                color="primary"
+              >
+                Sauvegarder
+              </button>
+            </div>
+            <ng-template #elseBlock>
+              <button (click)="update()" mat-raised-button color="primary">
+                Enregistrer
+              </button>
+            </ng-template>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

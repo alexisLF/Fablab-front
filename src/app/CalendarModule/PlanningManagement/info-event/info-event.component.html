@@ -1,0 +1,22 @@
+<div class="group-form">
+
+    <div class="event">
+        <div>Nom : {{this.title}}</div>
+    </div>
+    <div class="dateStart">
+        <div>Date de début : {{this.dateStart}} </div>
+    </div>
+    <div class="dateStart">
+        <div>Date de fin : {{this.dateEnd}} </div>
+    </div>
+    <div class="dateStart">
+        <div>Description : {{this.description}} </div>
+    </div>
+    <div class="dateStart">
+        <div>Ressource : {{this.resource.name}} </div>
+    </div>
+</div>
+
+
+<button mat-button mat-dialog-close mat-raised-button (click)="update()">Modifier</button>
+<button mat-button mat-dialog-close mat-raised-button class="danger" (click)="remove()">Supprimer</button>

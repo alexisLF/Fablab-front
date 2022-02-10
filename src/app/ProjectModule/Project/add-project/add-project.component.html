@@ -1,0 +1,208 @@
+<div class="container">
+  <h3 *ngIf="!update" mat-dialog-title>Ajouter un projet</h3>
+  <h3 *ngIf="update" mat-dialog-title>Modifier un projet</h3>
+  <form #formControl="ngForm">
+    <div class="form">
+      <mat-form-field color="primary">
+        <input
+          matInput
+          [(ngModel)]="data.title"
+          matInput
+          #input
+          class="form-control"
+          placeholder="Title"
+          name="titre"
+          required
+        />
+        <mat-error *ngIf="formControl.invalid"></mat-error>
+      </mat-form-field>
+    </div>
+
+    <!--Contains mat-hint for characters count and has maxLengt set-->
+    <div class="form">
+      <mat-checkbox [(ngModel)]="data.publicAccess" name="publicAccess">
+        Accès public
+      </mat-checkbox>
+    </div>
+    <div class="form">
+      <mat-form-field color="primary">
+        <textarea
+          [(ngModel)]="data.description"
+          matInput
+          #input
+          class="form-control"
+          placeholder="Description"
+          name="description"
+          required
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <label>Image d'illustration :</label>
+    <div class="text-center">
+      <input class="form-control" type="file" (change)="onChange($event)" />
+    </div>
+
+    <!-- Shareable short link of  uploaded file -->
+    <div class="container text-center jumbotron" *ngIf="shortLink">
+      <span translate
+        ><img src="../../../assets/uploads/{{ data.picture }}" />
+      </span>
+    </div>
+
+    <!--Flag variable is used here-->
+    <div class="container" *ngIf="loading">
+      <h3>Loading ...</h3>
+    </div>
+
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Date de début</mat-label>
+        <input
+          matInput
+          [(ngModel)]="data.dateStart"
+          name="dateStart"
+          [matDatepicker]="picker"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Date de fin</mat-label>
+        <input
+          matInput
+          [(ngModel)]="data.dateEnd"
+          name="dateEnd"
+          [matDatepicker]="dateEnd"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="dateEnd"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dateEnd></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <!-- AJOUT -->
+    <div *ngIf="!update">
+    <div  class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Créateur</mat-label>
+        <mat-select [(ngModel)]="data.creator" name="creator">
+          <mat-option *ngFor="let user of users" [value]="user">{{
+            user.firstname
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Tag</mat-label>
+        <mat-select [(ngModel)]="data.tagsList" name="tags" multiple>
+          <mat-option *ngFor="let tag of tagsList" [value]="tag">{{
+            tag.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Ajouter un tag</mat-label>
+        <input
+          matInput
+          [(ngModel)]="currentTagValue"
+          name="addTag"
+          placeholder="Tag"
+        />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addTag()">
+        Ajouter
+      </button>
+    </div>
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Collaborateur</mat-label>
+        <mat-select
+          [(ngModel)]="data.collaboratorsList"
+          name="collaborator"
+          multiple
+        >
+          <mat-option
+            *ngFor="let collaborator of users"
+            [value]="collaborator"
+            >{{ collaborator.firstname }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+    <!--MODIFCIATION-->
+    <div *ngIf="update">
+    <div  class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Créateur</mat-label>
+        <mat-select [(ngModel)]="data.creator.id" name="creator">
+          <mat-option *ngFor="let user of users" [value]="user.id">{{
+            user.firstname
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Tag</mat-label>
+        <mat-select [(ngModel)]="idtagsList" name="tags" multiple>
+          <mat-option *ngFor="let tag of tagsList" [value]="tag.id">{{
+            tag.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Ajouter un tag</mat-label>
+        <input
+          matInput
+          [(ngModel)]="currentTagValue"
+          name="addTag"
+          placeholder="Tag"
+        />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addTag()">
+        Ajouter
+      </button>
+    </div>
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Collaborateur</mat-label>
+        <mat-select
+          [(ngModel)]="idCollaboratorList"
+          name="collaborator"
+          multiple
+        >
+          <mat-option
+            *ngFor="let collaborator of users"
+            [value]="collaborator.id"
+            >{{ collaborator.firstname }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <!--MODIFICATION FIN-->
+    <div mat-dialog-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!formControl.valid"
+        (click)="confirmAdd()"
+      >
+        Valider
+      </button>
+      <button
+        mat-raised-button
+        mat-dialog-close
+        (click)="previous()"
+        tabindex="-1"
+      >
+        Annuler
+      </button>
+    </div>
+  </form>
+</div>

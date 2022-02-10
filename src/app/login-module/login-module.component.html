@@ -1,0 +1,52 @@
+<div class="container">
+
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="title">FabLab CESI</div>
+
+        <div class="inputs">
+
+            <div class="start">
+                <div class="welcome">Bienvenue sur le FabLab du CESI !</div>
+                <div *ngIf="!isSubscribe" class="subscribe">Nouveau ici ? <a class="link" (click)="subscribe()"> S'inscrire</a></div>
+                <div *ngIf="isSubscribe" class="subscribe">Déjà inscrit ? <a class="link" (click)="signIn()"> Se connecter</a></div>
+            </div>
+
+            <mat-form-field *ngIf="isSubscribe" class="input">
+                <input matInput type="text" placeholder="Prénom*" formControlName="firstName">
+            </mat-form-field>
+
+            <mat-form-field *ngIf="isSubscribe" class="input">
+                <input matInput type="text" placeholder="Nom de famille*" formControlName="lastName">
+            </mat-form-field>
+
+            <mat-form-field class="input">
+                <input matInput type="mail" placeholder="Adresse Mail*" formControlName="mail">
+            </mat-form-field>
+
+            <mat-form-field class="input">
+                <input matInput type="password" placeholder="Mot de Passe*" formControlName="password">
+            </mat-form-field>
+
+            <mat-form-field *ngIf="isSubscribe" class="input">
+                <input matInput type="password" placeholder="Confirmation du mot de passe*" formControlName="confirmPassword">
+            </mat-form-field>
+
+
+        <div class="validation">
+
+            <div class="checkbox">
+                    <input type="checkbox" formControlName="remember">
+                    Se souvenir de moi
+            </div>
+
+            <button mat-raised-button class="btn-valid" type="submit" [disabled]="loginForm.invalid || loginPending">
+                <div *ngIf="!loginPending">Valider</div>
+                <div *ngIf="loginPending"><span class="spinner-border mr-2"></span>Connexion en Cours ...</div>
+            </button>
+
+            <span *ngIf="showError" class="text-danger">Information(s) incorrect(s)</span>
+        </div>
+    </div>
+
+    </form>
+</div>

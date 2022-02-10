@@ -1,0 +1,107 @@
+<div class="subtitlewrapper">
+  <p class="subtitle" translate>Gestion des sites</p>
+</div>
+
+<div fxLayout="column" class="formulairewrapper">
+  <mat-accordion class="siteslist-overflow">
+    <!-- Main Header -->
+
+    <mat-list>
+      <mat-card class="tab-header">
+        <div fxLayout="row">
+          <div fxFlex="70" fxFlexOffset="2" fxLayoutAlign=" center" translate>
+            Nom
+          </div>
+
+          <div fxFlex="30" fxLayoutAlign=" center" translate>Action</div>
+
+          <div>
+            <button mat-mini-fab fxLayoutAlign="center center" (click)="add()">
+              <mat-icon aria-hidden="false" aria-label="Example home icon"
+                >add</mat-icon
+              >
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </mat-list>
+
+    <!-------------------->
+
+    <div *ngFor="let site of this.sites">
+      <mat-expansion-panel>
+        <!-- Element Header -->
+
+        <mat-expansion-panel-header>
+          <mat-panel-title fxFlex="70">
+            {{ site.name }}
+          </mat-panel-title>
+
+          <mat-panel-title fxFlex="30">
+            <div fxLayout="row" fxLayoutGap="10px">
+              <div>
+                <button
+                  mat-raised-button
+                  color="warn"
+                  (click)="update(site.id)"
+                >
+                  <mat-icon aria-hidden="false" aria-label="Example home icon"
+                    >edit</mat-icon
+                  >
+                </button>
+              </div>
+              <div>
+                <button
+                  mat-raised-button
+                  color="warn"
+                  (click)="deleteConfirmation(site.id)"
+                >
+                  <mat-icon aria-hidden="false" aria-label="Example home icon"
+                    >delete</mat-icon
+                  >
+                </button>
+              </div>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <!------------------------->
+
+        <!-- Element Content -->
+
+        <div fxLayout="column" fxLayoutGap="15px">
+          <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+            {{ site.description }}
+          </div>
+        </div>
+        <!-------------------------->
+      </mat-expansion-panel>
+    </div>
+
+    <div>
+      <button mat-button color="primary" (click)="previous()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >chevron_left</mat-icon
+        >
+      </button>
+      <button mat-button color="primary" (click)="next()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >chevron_right</mat-icon
+        >
+      </button>
+      Page {{ this.page + 1 }} of {{ this.nbPage }}
+      <mat-form-field appearance="fill">
+        <mat-label>{{this.pageSize}}</mat-label>
+        <mat-select
+          [(value)]="this.pageSize"
+          (valueChange)="changeValue($event)"
+        >
+          <mat-option value="5">5</mat-option>
+          <mat-option value="10">10</mat-option>
+          <mat-option value="15">15</mat-option>
+          <mat-option value="20">20</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-accordion>
+</div>

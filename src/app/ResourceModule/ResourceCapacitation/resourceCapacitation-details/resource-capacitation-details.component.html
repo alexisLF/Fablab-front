@@ -1,0 +1,55 @@
+
+<div fxFlex fxLayout="column" >
+  <div fxLayout="row" fxLayoutAlign="center" class="subtitlewrapper">
+    <p class="subtitle" translate>Gestion des habilitations</p>
+  </div>
+  
+  <div fxLayoutAlign="center" fxLayout="row wrap">
+    <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
+      <div fxLayout="column" style="margin-top: 100px">
+        <form [formGroup]="form">
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-label>Habilitation : </mat-label>
+              <input formControlName="name" matInput />
+              <mat-error *ngIf="form.controls['name'].invalid"
+                >Veuillez entrer un nom valide !</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-label>Description : </mat-label>
+              <input formControlName="description" matInput />
+              <mat-error *ngIf="form.controls['description'].invalid"
+                >Veuillez ajouter une description !</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <div *ngIf="isNew == true; else elseBlock">
+              <button
+                [disabled]="!form.valid || formSubmitted"
+                (click)="save()"
+                mat-raised-button
+                color="primary"
+              >
+                Sauvegarder
+              </button>
+            </div>
+            <ng-template #elseBlock>
+              <button
+                [disabled]="!form.valid || formSubmitted"
+                (click)="update()"
+                mat-raised-button
+                color="primary"
+              >
+                Enregistrer
+              </button>
+            </ng-template>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

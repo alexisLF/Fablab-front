@@ -1,0 +1,17 @@
+<div>
+  <div class="header">
+    <h1 mat-dialog-title>{{ data.title }}</h1>
+  </div>
+  <div mat-dialog-content>
+    <mat-icon color="warn" *ngIf="!data.isConfirm"> error </mat-icon>
+    <p [ngClass]="data.isConfirm ? 'dialog-message' : 'dialog-error'">
+      {{ data.message }}
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button class="btn btn-cancel" (click)="cancel()" *ngIf="data.isConfirm">
+      {{ data.cancelText }}
+    </button>
+    <button class="btn" (click)="confirm()">{{ data.confirmText }}</button>
+  </div>
+</div>

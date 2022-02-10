@@ -1,0 +1,95 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+}
+
+.group-form .mat-form-field + .mat-form-field {
+    margin-left: 6%; 
+}
+
+.group-form-date .mat-form-field + .mat-form-field {
+    margin-left: 20%; 
+}
+
+.description {
+  width: 60%;
+  color: #3f51b5;
+  font-weight: 500;
+}
+
+.title {
+    font-weight: 500;
+    color: #3f51b5;
+}
+
+.event {
+    width: 47%;
+    font-weight: 500;
+    color: #3f51b5;
+}
+
+.ressource {
+    width: 47%;
+    margin: 7px 0;
+    color: #3f51b5;
+    font-weight: 500;
+}
+
+.group-form {
+    width: 100%;
+    text-align: center;
+    margin: 7px auto ;
+}
+
+.group-form-date {
+    width: 100%;
+    text-align: center;
+    margin: 7px auto ;
+}
+
+.group-button {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.group-button button + button {
+    margin-left: 10%; 
+}
+
+.dateStart {
+    width: 40%;
+    color: #3f51b5;
+    font-weight: 500;
+}
+
+.dateEnd {
+    width: 40%;
+    color: #3f51b5;
+    font-weight: 500;
+}
+
+.textarea {
+    height: 16px;
+}
+
+.close {
+    background-color: #3f51b5;
+    color: white;
+    padding: 0 30px;
+}
+
+.valid {
+    background-color: #3f51b5;
+    color: white;
+    padding: 0px 30px;
+}
+
+.icon { 
+    font-size: 18px;
+}

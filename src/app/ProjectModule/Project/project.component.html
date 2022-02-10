@@ -1,0 +1,114 @@
+<div class="container">
+  <mat-toolbar
+    class="search-block mat-elevation-z1"
+    [class.active]="toggleSearch"
+  >
+    <mat-toolbar-row style="padding: 0 5px">
+      <input
+        class="search-control"
+        type="text"
+        placeholder="Search"
+        [(ngModel)]="searchText"
+        #searchbar
+      />
+      <button mat-button mat-icon-button (click)="searchClose()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <button mat-icon-button (click)="search()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-raised-button (click)="addProject()">
+        <mat-icon aria-label="Ajouter un projet">add</mat-icon> Ajouter un
+        projet
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="project-list">
+    <mat-card *ngFor="let project of projects" class="project-card">
+      <img
+        (click)="goToProject(project.id)"
+        mat-card-image
+        height="300"
+        src="../../../assets/uploads/{{ project.picture }}"
+        alt="{{ project.title }}"
+        class="card-img"
+      />
+      <mat-card-content>
+        <mat-card-title>{{ project.title }}</mat-card-title>
+        <p>
+          {{ project.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="card-button-container">
+          <button
+            mat-mini-fab
+            color="primary"
+            (click)="
+              updateProject(
+                project.id,
+                project.title,
+                project.status,
+                project.dateStart,
+                project.description,
+                project.dateEnd,
+                project.creator,
+                project.picture,
+                project.tagsList,
+                project.collaboratorsList
+              )
+            "
+          >
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+          <button mat-mini-fab color="warn" (click)="deleteProject(project.id)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!---
+  actions 
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="primary" (click)="addProject()">
+            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+          </button>
+        </mat-header-cell>
+  
+        <mat-cell *matCellDef="let row; let i=index;">
+          <button mat-icon-button color="primary" (click)="updateProject(row.id,row.title,row.status,row.dateStart,row.description,row.dateEnd,row.creator,row.picture,row.tagsList,row.collaboratorsList)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+  
+          <button mat-icon-button color="warn" (click)="deleteProject(row.id)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container> 
+      --->
+  <div>
+    <button mat-button color="primary" (click)="previous()">
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >chevron_left</mat-icon
+      >
+    </button>
+    <button mat-button color="primary" (click)="next()">
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >chevron_right</mat-icon
+      >
+    </button>
+    Page {{ this.page + 1 }} of {{ this.nbPage }}
+    <mat-form-field appearance="fill">
+      <mat-label>Number</mat-label>
+      <mat-select [(value)]="size" (valueChange)="changeValue($event)">
+        <mat-option value="5">5</mat-option>
+        <mat-option value="10">10</mat-option>
+        <mat-option value="15">15</mat-option>
+        <mat-option value="20">20</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

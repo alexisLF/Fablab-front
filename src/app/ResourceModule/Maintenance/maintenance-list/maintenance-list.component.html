@@ -1,0 +1,125 @@
+<div class="subtitlewrapper">
+  <p class="subtitle" translate>Gestion des maintenances</p>
+</div>
+
+<div fxLayout="column" class="formulairewrapper">
+  <mat-accordion class="operationtypeslist-overflow">
+    <!-- Main Header -->
+
+    <mat-list>
+      <mat-card class="tab-header">
+        <div fxLayout="row">
+          <mat-panel-title fxFlex="25%" fxLayoutAlign="center">
+            Nom
+          </mat-panel-title>
+
+          <mat-panel-title fxFlex="25%" fxLayoutAlign="center">
+            Date Début
+          </mat-panel-title>
+
+          <mat-panel-title fxFlex="25%" fxLayoutAlign="center">
+            Statut
+          </mat-panel-title>
+
+          <mat-panel-title fxFlex="25%" fxLayoutAlign="center">
+            Type d'opération
+          </mat-panel-title>
+
+          <div>
+            <button mat-mini-fab fxLayoutAlign="center center" (click)="add()">
+              <mat-icon aria-hidden="false" aria-label="add icon">add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </mat-list>
+
+    <!-------------------->
+
+    <div *ngFor="let maintenance of this.maintenances">
+      <mat-expansion-panel>
+        <!-- Element Header -->
+
+        <mat-expansion-panel-header>
+          <mat-panel-title fxFlex="25%" fxLayoutAlign="center">
+            {{ maintenance.resource.name }}
+          </mat-panel-title>
+
+          <mat-panel-title fxFlex="25%" fxLayoutAlign="center">
+            {{ maintenance.dateStart | date: "dd/MM/yy, HH:mm" }}
+          </mat-panel-title>
+
+          <mat-panel-title fxFlex="25%" fxLayoutAlign="center">
+            {{ maintenance.status.name }}
+          </mat-panel-title>
+
+          <mat-panel-title fxFlex="25%" fxLayoutAlign="center">
+            {{ maintenance.type.name }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <!------------------------->
+
+        <!-- Element Content -->
+
+        <div fxLayout="column" fxLayoutGap="15px">
+          <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+            {{ maintenance.note }}
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div>
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="update(maintenance.id)"
+            >
+              <mat-icon aria-hidden="false" aria-label="Example home icon"
+                >edit</mat-icon
+              >
+            </button>
+          </div>
+          <div>
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="deleteConfirmation(maintenance.id)"
+            >
+              <mat-icon aria-hidden="false" aria-label="Example home icon"
+                >delete</mat-icon
+              >
+            </button>
+          </div>
+        </div>
+
+        <!-------------------------->
+      </mat-expansion-panel>
+    </div>
+
+    <div>
+      <button mat-button color="primary" (click)="previous()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >chevron_left</mat-icon
+        >
+      </button>
+      <button mat-button color="primary" (click)="next()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >chevron_right</mat-icon
+        >
+      </button>
+      Page {{ this.page + 1 }} of {{ this.nbPage }}
+      <mat-form-field appearance="fill">
+        <mat-label>{{this.pageSize}}</mat-label>
+        <mat-select
+          [(value)]="this.pageSize"
+          (valueChange)="changeValue($event)"
+        >
+          <mat-option value="5">5</mat-option>
+          <mat-option value="10">10</mat-option>
+          <mat-option value="15">15</mat-option>
+          <mat-option value="20">20</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-accordion>
+</div>

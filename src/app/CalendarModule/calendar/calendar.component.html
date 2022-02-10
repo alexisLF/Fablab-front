@@ -1,0 +1,39 @@
+<div class="container" [formGroup]="form" >
+	<h1 class="title">{{ setTitle() }}</h1>
+	
+	<div class="group-form" *ngIf="status === 'select'">
+
+		<mat-form-field class="event">
+			<mat-label>Nom de l'évenement</mat-label>
+			<input matInput formControlName="title">
+			<mat-error *ngIf="form.controls['title'].invalid">Veuillez renseigner un nom</mat-error>
+		</mat-form-field>
+	</div>
+
+	<mat-form-field class="description" *ngIf="status === 'select'">
+		<mat-label>Description</mat-label>
+		<textarea class="textarea" matInput formControlName="description"></textarea>
+		<mat-error *ngIf="form.controls['description'].invalid">Veuillez selectionner une description</mat-error>
+	</mat-form-field>
+
+	<div class="group-form-date" *ngIf="status === 'select'">
+
+		<mat-form-field class="dateStart">
+			<input matInput type="datetime-local" formControlName="dateStart" placeholder="Date de début">
+			<mat-error *ngIf="form.controls['resource'].invalid">Veuillez selectionner une date de début valide</mat-error>
+		</mat-form-field>
+
+		<mat-form-field class="dateEnd">
+			<input matInput type="datetime-local" formControlName="dateEnd" placeholder="Date de fin">
+			<mat-error *ngIf="form.controls['resource'].invalid">Veuillez selectionner une date de fin valide</mat-error>
+		</mat-form-field>
+
+	</div>
+
+	<div mat-dialog-actions *ngIf="status === 'select'">
+		<div class="group-button">
+			<button mat-button mat-dialog-close mat-raised-button class="close">Annuler</button>
+			<button mat-button mat-dialog-close mat-raised-button class="valid" (click)="addEvent()">Valider</button>	
+		</div>
+	</div>
+</div>

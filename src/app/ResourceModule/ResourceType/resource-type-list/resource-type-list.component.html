@@ -1,0 +1,81 @@
+<div class="subtitlewrapper">
+  <p class="subtitle" translate>Gestion des types de ressource</p>
+</div>
+
+<div fxLayout="column" class="formulairewrapper">
+  <!-- Main Header -->
+  <mat-list>
+    <mat-card class="tab-header">
+      <div fxLayout="row">
+        <div fxFlex="70" fxFlexOffset="2" fxLayoutAlign=" center" translate>
+          Nom
+        </div>
+
+        <div fxFlex="30" fxLayoutAlign=" center" translate>Action</div>
+
+        <div>
+          <button mat-mini-fab fxLayoutAlign="center center" (click)="add()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+              >add</mat-icon
+            >
+          </button>
+        </div>
+      </div>
+    </mat-card>
+  </mat-list>
+
+  <!-------------------->
+  <mat-list>
+    <div *ngFor="let resourceType of this.resourceTypes">
+      <mat-list-item>
+        <div fxFlex="70">
+          {{ resourceType.name }}
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="update(resourceType.id)"
+          >
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+              >edit</mat-icon
+            >
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="deleteConfirmation(resourceType.id)"
+          >
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+              >delete</mat-icon
+            >
+          </button>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
+
+  <div>
+    <button mat-button color="primary" (click)="previous()">
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >chevron_left</mat-icon
+      >
+    </button>
+    <button mat-button color="primary" (click)="next()">
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >chevron_right</mat-icon
+      >
+    </button>
+    Page {{ this.page + 1 }} of {{ this.nbPage }}
+    <mat-form-field appearance="fill">
+      <mat-label>{{this.pageSize}}</mat-label>
+      <mat-select [(value)]="this.pageSize" (valueChange)="changeValue($event)">
+        <mat-option value="5">5</mat-option>
+        <mat-option value="10">10</mat-option>
+        <mat-option value="15">15</mat-option>
+        <mat-option value="20">20</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

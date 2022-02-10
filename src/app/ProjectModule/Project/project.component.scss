@@ -1,0 +1,93 @@
+/* Filter */
+.form {
+  min-height: 56px;
+  max-height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 8px 24px 0;
+  font-size: 20px;
+  justify-content: space-between;
+  border-bottom: 1px solid transparent;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  flex-grow: 1;
+  margin-top: 8px;
+}
+
+/* Mat table */
+.no-results {
+  display: flex;
+  justify-content: center;
+  padding: 14px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.mat-cell:nth-child(1),
+.mat-header-cell:nth-child(1){
+  flex: 0 0 6%;
+}
+
+.mat-cell:nth-child(2),
+.mat-header-cell:nth-child(2){
+  flex: 0 0 30%;
+}
+
+.mat-cell:nth-child(3),
+.mat-header-cell:nth-child(3){
+  flex: 0 0 6%;
+}
+
+.mat-cell:nth-child(7),
+.mat-header-cell:nth-child(7){
+  flex: 0 0 7%;
+}
+
+.project-card{
+  width: 20%;
+  margin: 1.2% 2.5% 2.5% 1.2%;
+}
+.project-list{
+  display: flex;
+  flex-direction: row;
+}
+.card-button-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 2%;
+}
+.card-img:hover{
+  z-index: 999;
+  background-color: rgba(43,46,56, .8);
+  transition: all .1s ease-out;
+  cursor: pointer;
+}
+header{
+   z-index: 11;
+  transition: all 250ms ease-in-out;
+}
+.main-header{
+  @extend header;
+  &.hidden{
+    opacity: 0;
+  }
+}
+.search-block{
+  width: 0%;
+  right: 0;
+  @extend header;
+  background: #fff;
+  &.active{
+    width: 100%;
+  }
+  .search-control{
+    flex: 1;
+    font-size: 1rem;
+    border: 0;
+    outline: none;
+    padding-left: 10px;
+  }
+}

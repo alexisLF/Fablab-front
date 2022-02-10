@@ -1,0 +1,32 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-drawer-container {
+  height: 100%;
+}
+
+.sidenav {
+  box-shadow: 3px 0 6px rgba(#000000, 0.24);
+}
+
+.right_content{
+  float: right;
+}
+
+mat-toolbar {
+  width: 100%;
+  height: auto;
+  padding-bottom: 0.5%;
+  padding-top: 0.5%;
+
+  color: white;
+  text-decoration: none;
+}
+
+mat-toolbar a {
+  display: inline-block;
+
+  color: white;
+  text-decoration: none;
+}

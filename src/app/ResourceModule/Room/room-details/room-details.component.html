@@ -1,0 +1,116 @@
+
+<div fxFlex fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center" class="subtitlewrapper">
+    <p class="subtitle" translate>Gestion des salles</p>
+  </div>
+  
+  <div fxLayout="row wrap" fxLayoutAlign="center">
+    <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
+      <div fxLayout="column"  style="margin-top: 100px">
+        <form [formGroup]="form">
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-label>Nom : </mat-label>
+              <input formControlName="name" matInput />
+              <mat-error *ngIf="form.controls['name'].invalid"
+                >Veuillez entrer un nom valide !</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-label>Etage : </mat-label>
+              <textarea
+                formControlName="floor"
+                matInput
+                placeholder=""
+              ></textarea>
+              <mat-error *ngIf="form.controls['floor'].invalid"
+                >Veuillez entrer un étage valide !</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-label>Site : </mat-label>
+              <input formControlName="site" matInput readonly />
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="!this.isNew">
+            <!-- Main Header -->
+            <mat-list>
+              <mat-card class="tab-header">
+                <div fxLayout="row">
+                  <div fxFlex="70">Id</div>
+                  <div
+                    fxFlex="70"
+                    fxFlexOffset="2"
+                    fxLayoutAlign=" center"
+                    translate
+                  >
+                    Nom
+                  </div>
+                  <div fxFlex="70">Stock</div>
+                  <div>
+                    <button
+                      mat-mini-fab
+                      fxLayoutAlign="center center"
+                      (click)="addResource(this.id)"
+                    >
+                      <mat-icon
+                        aria-hidden="false"
+                        aria-label="Example home icon"
+                        >add</mat-icon
+                      >
+                    </button>
+                  </div>
+                </div>
+              </mat-card>
+            </mat-list>
+
+            <mat-list *ngIf="isNew == false">
+              <div *ngFor="let resource of this.resources">
+                <mat-list-item (click)="viewResource(resource.id)">
+                  <div fxFlex="70">
+                    {{ resource.id }}
+                  </div>
+                  <div fxFlex="70">
+                    {{ resource.name }}
+                  </div>
+                  <div fxFlex="70">
+                    {{ resource.stock }}
+                  </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+              </div>
+            </mat-list>
+          </div>
+
+          <div fxLayoutAlign="center">
+            <div *ngIf="isNew == true; else elseBlock">
+              <button
+                [disabled]="!form.valid || formSubmitted"
+                (click)="save()"
+                mat-raised-button
+                color="primary"
+              >
+                Sauvegarder
+              </button>
+            </div>
+            <ng-template #elseBlock>
+              <button
+                [disabled]="!form.valid || formSubmitted"
+                (click)="update()"
+                mat-raised-button
+                color="primary"
+              >
+                Enregistrer
+              </button>
+            </ng-template>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

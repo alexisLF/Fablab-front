@@ -1,0 +1,56 @@
+<mat-toolbar class="navbar-header" color="primary" *ngIf="!isLogin">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>FabLab</span>
+  <span class="spacer"></span>
+  <div class="right_content">
+    <button mat-icon-button>
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon matBadge="15" matBadgeColor="warn">notifications_active</mat-icon>
+    </button>
+    <button mat-icon-button routerLink="/">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-raised-button color="warn" routerLink="login">
+      Se déconnecter
+    </button>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    class="sidenav"
+    fixedInViewPort="false"
+    [attr.role]="isHandset ? 'dialog' : 'navigation'"
+    [mode]="(isHandset | async)!.matches ? 'over' : 'side'"
+    [opened]="false"
+  >
+    <mat-nav-list>
+      <a routerLink="/resourceslist" mat-list-item (click)="sidenav.toggle()"
+        ><mat-icon>insert_invitation</mat-icon>Gestion Planning</a
+      >
+      <a routerLink="/resource-home" mat-list-item (click)="sidenav.toggle()"
+        ><mat-icon>eco</mat-icon>Gestion de Ressources</a
+      >
+      <a routerLink="/" mat-list-item (click)="sidenav.toggle()"
+        ><mat-icon>manage_accounts</mat-icon>Gestion Utilisateurs</a
+      >
+      <a routerLink="/forum" mat-list-item (click)="sidenav.toggle()"
+        ><mat-icon>manage_accounts</mat-icon>Forum</a
+      >
+      <a routerLink="/project" mat-list-item (click)="sidenav.toggle()"
+        ><mat-icon>emoji_objects</mat-icon>Gestion de Projet</a
+      >
+      <a routerLink="/admin" mat-list-item (click)="sidenav.toggle()" *ngIf="this.role == 'ROLE_ADMIN'"
+        ><mat-icon>build</mat-icon>Admin</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

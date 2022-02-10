@@ -1,0 +1,20 @@
+<div class="subtitlewrapper">
+  <p class="subtitle" translate>Module de gestion des ressources</p>
+</div>
+
+<div fxLayout="row wrap" class="matcardtilesWrapper">
+  <mat-card
+    *ngFor="let resource of resourceTypes"
+    class="matcardtiles mat-elevation-z4"
+    routerLink="/resources-list/{{ resource.id }}"
+  >
+    <mat-card-content class="matcardcontent">
+      <img id="image" src="../../../assets/uploads/{{ resource.picture }}" />
+    </mat-card-content>
+
+    <mat-card-footer class="matcardtilesfooter">
+      <span translate>{{ resource.name }}</span>
+    </mat-card-footer>
+  </mat-card>
+  <!-- card list here -->
+</div>

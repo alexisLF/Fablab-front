@@ -1,0 +1,20 @@
+.header,
+.dialog-message,
+.dialog-error {
+  text-transform: lowercase;
+}
+
+.dialog-error {
+  color: red;
+}
+
+.header::first-letter,
+.dialog-message::first-letter {
+  text-transform: uppercase;
+}
+
+.btn-cancel {
+  background-color: red;
+  color: #fff;
+  margin-right: 10px;
+}

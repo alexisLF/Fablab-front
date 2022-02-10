@@ -1,0 +1,62 @@
+
+
+<div fxFlex fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center" class="subtitlewrapper">
+    <p class="subtitle" translate>Gestion des types de ressource</p>
+  </div>
+  <div fxLayout="row wrap" fxLayoutAlign="center"> 
+    <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
+      <div fxLayout="column"  style="margin-top: 100px">
+        <form [formGroup]="form">
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-label>Type de ressource : </mat-label>
+              <input formControlName="name" matInput />
+              <mat-error *ngIf="form.controls['name'].invalid"
+                >Veuillez entrer un nom valide !</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <div class="text-center">
+              <input
+                class="form-control"
+                type="file"
+                (change)="onChange($event)"
+              />
+            </div>
+          </div>
+
+          <div fxLayoutAlign="center" *ngIf="resourceType">
+            <img
+              id="image"
+              src="../../../assets/uploads/{{ resourceType.picture }}"
+            />
+          </div>
+          <div fxLayoutAlign="center">
+            <div *ngIf="isNew == true; else elseBlock">
+              <button
+                [disabled]="!form.valid || formSubmitted || this.image == null"
+                (click)="save()"
+                mat-raised-button
+                color="primary"
+              >
+                Sauvegarder
+              </button>
+            </div>
+            <ng-template #elseBlock>
+              <button
+                [disabled]="!form.valid || formSubmitted"
+                (click)="update()"
+                mat-raised-button
+                color="primary"
+              >
+                Enregistrer
+              </button>
+            </ng-template>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

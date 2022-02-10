@@ -1,0 +1,197 @@
+
+<div fxFlex fxLayout="column" >
+  <div fxLayout="row" fxLayoutAlign="center" class="subtitlewrapper">
+    <p class="subtitle" translate>Gestion des ressources</p>
+  </div>
+  
+  <div fxLayoutAlign="center" fxLayout="row wrap">
+    <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
+      <div fxLayout="column" style="margin-top: 100px">
+        <form [formGroup]="form">
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-label>Nom de la ressource : </mat-label>
+              <input formControlName="name" matInput />
+              <mat-error *ngIf="form.controls['name'].invalid"
+                >Please enter a valid username</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-label>Référence : </mat-label>
+              <input formControlName="reference" matInput />
+              <mat-error *ngIf="form.controls['reference'].invalid"
+                >Veuillez saisir une référence valide</mat-error
+              >
+            </mat-form-field>
+          </div>
+
+          <div fxLayoutAlign="center">
+            <div class="text-center">
+              <input
+                class="form-control"
+                type="file"
+                (change)="onChange($event)"
+              />
+            </div>
+          </div>
+
+          <div fxLayoutAlign="center">
+            <img
+              *ngIf="this.resource.picture != null"
+              id="image"
+              src="../../../assets/uploads/{{ resource.picture }}"
+            />
+          </div>
+
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <input
+                matInput
+                [ngxMatDatetimePicker]="pickerInstallationDate"
+                placeholder="Date de l'installation de la ressource :"
+                formControlName="installationDate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="pickerInstallationDate"
+              ></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker
+                #pickerInstallationDate
+              ></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-label>Quantité : </mat-label>
+              <input formControlName="stock" type="number" matInput />
+              <mat-error *ngIf="form.controls['stock'].invalid"
+                >Veuillez saisir un nombre</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <mat-checkbox formControlName="isActive" class="example-margin"
+              >Est installée ?</mat-checkbox
+            >
+          </div>
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-select
+              *ngIf="!this.resourceTypeName"
+                #selectResourceTypes
+                placeholder="Type de ressource :"
+                formControlName="resourceType"
+              >
+                <mat-select-filter
+                  *ngIf="selectResourceTypes.focused"
+                  [placeholder]="'Filtre'"
+                  [displayMember]="'name'"
+                  [array]="resourceTypes"
+                  (filteredReturn)="filteredResourceTypes = $event"
+                ></mat-select-filter>
+                <mat-option
+                  *ngFor="let item of filteredResourceTypes"
+                  [value]="item"
+                >
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+              <input *ngIf="this.resourceTypeName" [value]="this.resourceTypeName" type="text" matInput readonly/>
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-select
+              *ngIf="!this.siteName"
+                #selectRooms
+                placeholder="Pièce :"
+                formControlName="rooms"
+              >
+                <mat-select-filter
+                  *ngIf="selectRooms.focused"
+                  [placeholder]="'Filtre'"
+                  [displayMember]="'name'"
+                  [array]="rooms"
+                  (filteredReturn)="filteredRooms = $event"
+                ></mat-select-filter>
+                <mat-option *ngFor="let item of filteredRooms" [value]="item">
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+              <input *ngIf="this.siteName" [value]="this.siteName" type="text" matInput readonly/>
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-select
+                #selectStates
+                placeholder="Etat de la ressource :"
+                formControlName="states"
+              >
+                <mat-select-filter
+                  *ngIf="selectStates.focused"
+                  [placeholder]="'Filtre'"
+                  [displayMember]="'name'"
+                  [array]="states"
+                  (filteredReturn)="filteredStates = $event"
+                ></mat-select-filter>
+                <mat-option *ngFor="let item of filteredStates" [value]="item">
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <mat-form-field>
+              <mat-select
+                #selectDocumentations
+                placeholder="Documentation :"
+                formControlName="documentations"
+              >
+                <mat-select-filter
+                  *ngIf="selectDocumentations.focused"
+                  [placeholder]="'Filtre'"
+                  [displayMember]="'description'"
+                  [array]="documentations"
+                  (filteredReturn)="filteredDocumentations = $event"
+                ></mat-select-filter>
+                <mat-option
+                  *ngFor="let item of filteredDocumentations"
+                  [value]="item"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxLayoutAlign="center">
+            <div *ngIf="isNew == true; else elseBlock">
+              <button
+                [disabled]="!form.valid || formSubmitted"
+                (click)="save()"
+                mat-raised-button
+                color="primary"
+              >
+                Sauvegarder
+              </button>
+            </div>
+            <ng-template #elseBlock>
+              <button
+                [disabled]="!form.valid || formSubmitted"
+                (click)="update()"
+                *ngIf="this.role == 'ROLE_ADMIN'"
+                mat-raised-button
+                color="primary"
+              >
+                Enregistrer
+              </button>
+            </ng-template>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

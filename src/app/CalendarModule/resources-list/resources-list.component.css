@@ -1,0 +1,14 @@
+.example-card {
+    max-width: calc( 25% - 20px);
+    float:left;
+    margin:10px;
+    height:400px;
+}
+
+.example-card img{
+    height:225px;
+}
+
+.example-header-image {
+    background-size: cover;
+}
